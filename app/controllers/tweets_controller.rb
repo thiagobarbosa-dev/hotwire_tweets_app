@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only: %i[show edit update destroy]
   # GET /tweets or /tweets.json
   def index
     @tweets = Tweet.all.order(created_at: :desc)
@@ -25,7 +26,44 @@ class TweetsController < ApplicationController
       end
     end
   end
+  def edit  
+  end
 
+  def update
+    if params[:like] == 'true'
+      @tweet.increment!(:likes)
+      respond_to do |format|
+        format.html { redirect_to @tweet }
+        format.json { render :show, status: :ok, location: @tweet }
+      end
+    else
+      respond_to do |format|
+        if @tweet.update(tweet_params)
+          format.html { redirect_to @tweet }
+          format.json { render :show, status: :ok, location: @tweet }
+        else
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace(
+              @tweet, partial: 'tweets/form', locals: { tweet: @tweet }
+            )
+          end
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @tweet.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
+  def show
+  end
+
+  def destroy
+    @tweet.destroy 
+    respond_to do |format|
+      format.html { redirect_to tweets_url }
+      format.json { head :no_content }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
