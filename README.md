@@ -1,24 +1,17 @@
-# README
+# Como usar o Hotwire com o Ruby On Rails
+Como usar o Hotwire com o Ruby On Rails
+by: OneBitCode
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projeto construído baseando-se no tutorial:
+https://onebitcode.com/como-usar-o-hotwire-com-o-ruby-on-rails-passo-a-passo/
 
-Things you may want to cover:
 
-* Ruby version
+O que é o Hotwire?
+O coração do Hotwire é a gem Turbo. Um conjunto de técnicas complementares, para acelerar a navegação das páginas e envios de formulários, dividindo páginas complexas em componentes e transmitindo atualizações parciais das páginas através do WebSocket (o qual consiste em ActionCable, Channels e Streaming Data).
 
-* System dependencies
+Tudo isso com a possibilidade de não escrever nenhum JavaScript, apenas se for necessário escrever algum código customizado e para esse caso usaremos o Stimulus que torna isso muito fácil com uma abordagem centrada em HTML para estados e navegação entre a rede (wire) e que foi projetado desde o início para se integrar perfeitamente com aplicativos híbridos nativos para iOS e Android.
 
-* Configuration
+ 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+O que vamos criar?
+Uma aplicação web responsiva para se adequar as telas de computador e celular aonde poderemos criar, visualizar, atualizar, dar like e retweetar o tweet se igualando quase a uma SPA sem sacrificar velocidade e capacidade de armazenamento das respostas usando Rails com Hotwire.
